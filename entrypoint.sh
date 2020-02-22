@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -n "Deploying application to Dokku host\n"
+
 # Consume environment variables
 SSH_PRIVATE_KEY=$1
 SSH_DEPLOYMENT_KEY=$2
