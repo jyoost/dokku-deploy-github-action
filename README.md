@@ -43,16 +43,30 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 Note: `actions/checkout` must preceed this action in order for the repository data to be exposed for the action.
 It is recommended to pass `actions/checkout` the `fetch-depth: 0` parameter to avoid errors such as `shallow update not allowed`
 
-```
-steps:
-  - uses: actions/checkout@v2
-    with:
-        fetch-depth: 0
-  - id: deploy
-    name: Deploy to dokku
-    uses: idoberko2/dokku-deploy-github-action@v1
-    with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-        dokku-host: 'my-dokku-host.com'
-        app-name: 'my-dokku-app'
+```yaml
+name: Deploy to Dokku - production
+
+on: [push]
+
+env:
+  DOKKU_HOST: 'my-host.com'
+  DOKKU_APP_NAME: 'my-app-production'
+  DOKKU_REMOTE_BRANCH: 'master'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Deploy
+        uses: woudsma/dokku-deploy-github-action@v1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          dokku-host: ${{ env.DOKKU_HOST }}
+          app-name: ${{ env.DOKKU_APP_NAME }}
+          app-remote-branch: ${{ env.DOKKU_REMOTE_BRANCH }}
+
 ```
