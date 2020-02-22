@@ -1,14 +1,13 @@
 #!/bin/bash
 
-echo -n "Deploying application to Dokku host\n"
-
 # Consume environment variables
 SSH_PRIVATE_KEY=$1
-SSH_DEPLOYMENT_KEY=$2
-DOKKU_USER=$3
-DOKKU_HOST=$4
-DOKKU_APP_NAME=$5
-DOKKU_REMOTE_BRANCH=$6
+DOKKU_USER=$2
+DOKKU_HOST=$3
+DOKKU_APP_NAME=$4
+DOKKU_REMOTE_BRANCH=$5
+
+echo -n "Deploying application to Dokku host\n"
 
 # Setup the SSH environment
 mkdir -p ~/.ssh
