@@ -31,3 +31,4 @@ runs:
     - ${{ inputs.dokku-host }}
     - ${{ inputs.app-name }}
     - ${{ inputs.remote-branch }}
+    - ${{ inputs.deploy-branch }}

@@ -6,6 +6,7 @@ DOKKU_USER=$2
 DOKKU_HOST=$3
 DOKKU_APP_NAME=$4
 DOKKU_REMOTE_BRANCH=$5
+DEPLOY_BRANCH=$6
 
 echo -n "Deploying application to Dokku host\n"
 
@@ -23,7 +24,7 @@ cd $GITHUB_WORKSPACE
 git remote add dokku $REMOTE
 
 # Prepare to push to Dokku git repository
-REMOTE_REF=$GITHUB_SHA:refs/heads/$DOKKU_REMOTE_BRANCH:master
+REMOTE_REF=$DEPLOY_BRANCH:refs/heads/$DOKKU_REMOTE_BRANCH:master
 GIT_COMMAND="git push dokku $REMOTE_REF"
 echo "GIT_COMMAND=$GIT_COMMAND"
 
