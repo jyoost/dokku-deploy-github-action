@@ -1,5 +1,5 @@
 name: "Dokku to Deploy"
-author: "John Yoost (forked from Tjerk Woudsma")
+author: "John Yoost (forked from Tjerk Woudsma)"
 description: "Deploy to a dokku instance using Github actions"
 branding:
   icon: "upload-cloud"
