@@ -28,8 +28,7 @@ inputs:
     default: ""
   deploy-branch:
     description: "The branch in the github repo to push"
-    required: false
-    default: "master"
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"
