@@ -1,5 +1,5 @@
 name: "Dokku to Deploy"
-author: "Tjerk Woudsma (forked from Ido Berkovich)"
+author: "John Yoost (forked from Tjerk Woudsma")
 description: "Deploy to a dokku instance using Github actions"
 branding:
   icon: "upload-cloud"
@@ -22,6 +22,14 @@ inputs:
     description: "The branch to push on the remote repository (Default: master)"
     required: false
     default: "master"
+  git-push-flags:
+    description: "Additional flags to be passed to the git push command. Could be used to force push"
+    required: false
+    default: ""
+  deploy-branch:
+    description: "The branch in the github repo to push"
+    required: false
+    default: "master"
 runs:
   using: "docker"
   image: "Dockerfile"
@@ -31,4 +39,5 @@ runs:
     - ${{ inputs.dokku-host }}
     - ${{ inputs.app-name }}
     - ${{ inputs.remote-branch }}
+    - ${{ inputs.git-push-flags }}
     - ${{ inputs.deploy-branch }}
